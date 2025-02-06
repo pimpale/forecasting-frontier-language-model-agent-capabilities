@@ -4,14 +4,12 @@ import { FileEarmarkPdf, Github } from 'react-bootstrap-icons';
 
 import Fig1 from './assets/figures/scaling_graph.png';
 
-
-
 import { Prism as SyntaxHighligher } from 'react-syntax-highlighter';
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import InteractiveFigure1 from './interactive_figures/InteractiveFigure1';
 
 function App() {
-  return <ArticleLayout >{(_) => <>
+  return <ArticleLayout >{({ Citation, CitationBank }) => <>
     <h2 className='text-center'>Forecasting Frontier Language Model Agent Capabilities</h2>
     <section id="authors" className="d-flex justify-content-center">
       <div className='p-2 text-center'>
@@ -72,10 +70,47 @@ function App() {
       Our approach does not account for recent advances in inference-compute scaling and might thus be too conservative.
     </Section>
     <Section id="interactive-fig1" name="Explore the Forecast">
-      <div className="d-flex justify-content-center">
-        <InteractiveFigure1 />
-      </div>
+      <InteractiveFigure1 />
     </Section>
+    <Section id="interactive-fig1" name="Conditional Probability Distributions">
+      <InteractiveHistogram />
+    </Section>
+    <Section id="limitations" name="Limitations">
+      <p>
+        <b>Paradigm Changes</b>: While this paper does not make any explicit assumptions about the training paradigm of any particular model,
+        we fit almost all predictions on models that were trained with the "pre-training scaling" paradigm, where the
+        primary driver for downstream performance was improvements of pre-training. However, with OpenAI's o1, we may
+        start to see a new "inference scaling" paradigm where models are trained to utilize inference compute much more
+        effectively through reasoning. This might invalidate our predictions and thus provide a reason to assume faster
+        progress than our forecasts would suggest, even for high-elicitation predictions.
+      </p>
+
+      <p>
+        <b>Underelicitation</b>:
+        As discussed in the elicitation section, we did not put a lot of effort into elicitation. As a consequence,
+        we know that our results are significantly below frontier performance and that our "low-elicitation" predictions
+        are conservative. Even the "max-current-elicitation" forecast might underestimate performance due to paradigm
+        changes or later breakthroughs in agent scaffolding and elicitation.
+      </p>
+
+      <p>
+        <b>Small sample size</b>:
+        Unfortunately, almost by definition, there are only a small number of frontier models. Therefore, our predictions
+        have a small sample size. This is partially mitigated by making use of the two-step methodology and predicting
+        the intermediate variable independently. However, we think the small sample size should imply large uncertainty
+        about our forecasts.
+        This limitation also affects our backtesting. Because our available test data is limited, we must rely on small
+        evaluation windows, some as brief as two-month intervals. As a result, we have little empirical evidence regarding
+        how our predictions might perform over longer periods.
+      </p>
+      <p>
+        <b>Limited Scope of Evaluations</b>:
+        The benchmarks we consider focus primarily on software engineering, cyber capabilities, and machine learning
+        engineering. Noteworthy other agent benchmarks include GAIA<Citation source='https://arxiv.org/abs/2311.12983' /> and OS-World<Citation source='https://arxiv.org/abs/2404.07972' /> for browsing and tool use, as well as
+        MLE-Bench<Citation source='https://openai.com/index/mle-bench/' /> for additional machine learning capabilities.
+      </p>
+    </Section>
+
     <Section id="bibtex" name="Bibtex">
       <SyntaxHighligher
         className="mx-5 my-5"
@@ -92,6 +127,9 @@ function App() {
         `}
       />
     </Section>
+    <Section id="references" name="References">
+      <CitationBank />
+    </Section>
   </>
   }</ArticleLayout>
 }
@@ -106,6 +144,7 @@ import './styles/style.scss';
 import 'bootstrap/dist/js/bootstrap';
 import { ArrowRight } from 'react-bootstrap-icons';
 import dedent from 'dedent';
+import InteractiveHistogram from './interactive_figures/InteractiveHistogram';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

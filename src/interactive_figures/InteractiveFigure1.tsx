@@ -8,25 +8,10 @@ import cybench_forecast from '../assets/data/cybench_forecast.json';
 import cybench_forecast_elicited from '../assets/data/cybench_forecast_elicited.json';
 import rebench_forecast from '../assets/data/rebench_forecast.json';
 import { useState, useEffect } from 'react';
-
-type InteractiveFigure1Props = {
-}
-
-const BLUE_RGB = "#1f77b4";
-const ORANGE_RGB = "#ff7f0e";
+import { BLUE_RGB, floatYearToDate, Forecast, ORANGE_RGB, get_frontier_model_set } from './utils';
 
 
-function floatYearToDate(years: number[]): number[] {
-    return years.map(year => {
-        const wholeYear = Math.floor(year);
-        const fraction = year - wholeYear;
-        const millisInYear = 365.25 * 24 * 60 * 60 * 1000; // Account for leap years
-        const startOfYear = new Date(wholeYear, 0, 1).getTime();
-        return startOfYear + (fraction * millisInYear);
-    });
-}
-
-function InteractiveFigure1(_: InteractiveFigure1Props) {
+function InteractiveFigure1(_: {}) {
     return <Fig1 plots={[
         {
             title: "SWE-Bench Verified",
@@ -47,8 +32,6 @@ function InteractiveFigure1(_: InteractiveFigure1Props) {
                 },
                 forecast: swebench_forecast_elicited,
             },
-            floor: 0,
-            ceiling: 1,
         },
         {
             title: "Cybench",
@@ -69,8 +52,6 @@ function InteractiveFigure1(_: InteractiveFigure1Props) {
                 },
                 forecast: cybench_forecast_elicited,
             },
-            floor: 0,
-            ceiling: 1,
         },
         {
             title: "RE-Bench",
@@ -83,21 +64,10 @@ function InteractiveFigure1(_: InteractiveFigure1Props) {
                 },
                 forecast: rebench_forecast,
             },
-            floor: 0,
-            ceiling: 1.66,
         }
     ]} />
 }
 
-
-type Forecast = {
-    x_linspace: Array<number>,
-    y_linspace: Array<number>,
-    forecast: Array<number>,
-    min_ci: Array<number>,
-    max_ci: Array<number>,
-    density: Array<Array<number>>,
-}
 
 type Scatter = {
     xpoints: Array<number>,
@@ -116,39 +86,11 @@ type PlotProps = {
         scatter: Scatter,
         forecast: Forecast
     }
-    floor: number,
-    ceiling: number
 }
 
 type InnerPlotProps = {
     plots: Array<PlotProps>
 }
-
-
-function get_frontier_model_set(
-    x: Array<number>,
-    y: Array<number | null>,
-    model: Array<string>,
-): Set<string> {
-    // sort by x
-    const joint = x.map((v, i) => [v, y[i], model[i]] as [number, number | null, string])
-        // first sort by y, then by x
-        .sort((a, b) => (b[1] ?? 0) - (a[1] ?? 0))
-        .sort((a, b) => a[0] - b[0]);
-    let frontier: Set<string> = new Set();
-    let max = -Infinity;
-    for (let [_, y, m] of joint) {
-        if (y === null) {
-            continue;
-        }
-        if (y > max) {
-            frontier.add(m);
-            max = y;
-        }
-    }
-    return frontier;
-}
-
 
 function Fig1(props: InnerPlotProps) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -327,7 +269,7 @@ function Fig1(props: InnerPlotProps) {
             width: plotWidth,
             height: isMobile ? plotHeight * props.plots.length : plotHeight,
             showlegend: false,
-            margin: { t: 40, b: 20, l: 0, r: 10 },
+            margin: { t: 40, b: 20, l: 40, r: 10 },
             // Add subplot configs
             ...props.plots.reduce((acc, plot, i) => ({
                 ...acc,
@@ -336,7 +278,10 @@ function Fig1(props: InnerPlotProps) {
                     range: floatYearToDate([2022, 2027])
                 },
                 [`yaxis${i + 1}`]: {
-                    range: [plot.floor, plot.ceiling],
+                    range: [
+                        Math.min(...plot.unelicited.forecast.y_linspace),
+                        Math.max(...plot.unelicited.forecast.y_linspace)
+                    ],
                     title: {
                         text: plot.yaxis,
                         font: {
