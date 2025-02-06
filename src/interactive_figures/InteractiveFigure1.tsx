@@ -187,7 +187,11 @@ function Fig1(props: InnerPlotProps) {
                         type: 'scatter',
                         xaxis: `x${i + 1}`,
                         yaxis: `y${i + 1}`,
-                    },
+                        hoverinfo: 'none'
+                    }
+                ];
+
+                const line_data: Plotly.Data[] = [
                     // Add unelicited forecast line
                     {
                         x: floatYearToDate(unelicitedForecast.x_linspace),
@@ -198,6 +202,7 @@ function Fig1(props: InnerPlotProps) {
                         type: 'scatter',
                         xaxis: `x${i + 1}`,
                         yaxis: `y${i + 1}`,
+                        hovertemplate: '%{x}<br>%{y:.3f}<extra></extra>'
                     }
                 ];
 
@@ -215,7 +220,8 @@ function Fig1(props: InnerPlotProps) {
                             color: BLUE_RGB,
                             symbol: 'star',
                             size: 12
-                        }
+                        },
+                        hovertemplate: '%{text}<br>%{y:.3f}<extra></extra>'
                     },
                     // plot non-frontier points
                     {
@@ -229,7 +235,8 @@ function Fig1(props: InnerPlotProps) {
                         marker: {
                             color: BLUE_RGB,
                             opacity: 0.5
-                        }
+                        },
+                        hovertemplate: '%{text}<br>%{y:.3f}<extra></extra>'
                     }
                 ];
 
@@ -254,7 +261,11 @@ function Fig1(props: InnerPlotProps) {
                             type: 'scatter',
                             xaxis: `x${i + 1}`,
                             yaxis: `y${i + 1}`,
-                        },
+                            hoverinfo: 'none'
+                        }
+                    );
+
+                    line_data.push(
                         // Add elicited forecast line
                         {
                             x: floatYearToDate(elicitedForecast.x_linspace),
@@ -265,6 +276,7 @@ function Fig1(props: InnerPlotProps) {
                             type: 'scatter',
                             xaxis: `x${i + 1}`,
                             yaxis: `y${i + 1}`,
+                            hovertemplate: '%{x}<br>%{y:.3f}<extra></extra>'
                         }
                     );
 
@@ -282,7 +294,8 @@ function Fig1(props: InnerPlotProps) {
                                 color: ORANGE_RGB,
                                 symbol: 'star',
                                 size: 12
-                            }
+                            },
+                            hovertemplate: '%{text}<br>%{y:.3f}<extra></extra>'
                         },
                         // plot non-frontier points
                         {
@@ -296,12 +309,13 @@ function Fig1(props: InnerPlotProps) {
                             marker: {
                                 color: ORANGE_RGB,
                                 opacity: 0.5
-                            }
+                            },
+                            hovertemplate: '%{text}<br>%{y:.3f}<extra></extra>'
                         }
                     );
                 }
 
-                return [...confidence_interval_data, ...scatter_data];
+                return [...confidence_interval_data, ...line_data, ...scatter_data];
             })
         }
         layout={{
