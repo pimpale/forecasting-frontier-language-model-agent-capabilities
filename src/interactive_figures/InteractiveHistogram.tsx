@@ -44,6 +44,15 @@ function getFirstCrossing(x: number[], y: number[], threshold: number): number |
     return undefined;
 }
 
+function linspace(start: number, end: number, npoints: number): number[] {
+    const step = (end - start) / (npoints - 1);
+    const out = [];
+    for (let i = 0; i < npoints; i++) {
+        out.push(start + i * step);
+    }
+    return out;
+}
+
 
 type HistogramPlotProps = {
     plots: Array<{
@@ -93,7 +102,7 @@ function InnerHistogram(props: HistogramPlotProps) {
                         y: unelicitedForecast.density.map(r => r[defaultIdx]),
                         name: 'Unelicited',
                         fill: 'tozeroy',
-                        line: { color: BLUE_RGB },
+                        line: { color: `${BLUE_RGB}40` },
                         fillcolor: `${BLUE_RGB}40`
                     }
                 ];
@@ -103,31 +112,35 @@ function InnerHistogram(props: HistogramPlotProps) {
                 if (forecast_pred_x !== undefined) {
                     forecastLines.push({
                         type: 'scatter',
-                        x: floatYearToDate([forecast_pred_x, forecast_pred_x]),
-                        y: [0, maxV],
+                        name: 'Forecast',
+                        x: floatYearToDate(linspace(forecast_pred_x, forecast_pred_x, 10)),
+                        y: linspace(0, maxV, 10),
                         line: { color: BLUE_RGB, },
+                        mode: 'lines'
                     });
                 }
 
 
                 if (plot.elicited) {
-                    const elicitedForecast = plot.elicited;
+                    const elicitedForecast = plot.elicited
                     densityTraces.push({
                         type: 'scatter',
                         x: floatYearToDate(plot.elicited.x_linspace),
                         y: plot.elicited.density.map(r => r[defaultIdx]),
                         name: 'Elicited',
                         fill: 'tozeroy',
-                        line: { color: ORANGE_RGB },
+                        line: { color: `${ORANGE_RGB}40` },
                         fillcolor: `${ORANGE_RGB}40`
                     });
                     const forecast_pred_x = getFirstCrossing(elicitedForecast.x_linspace, elicitedForecast.forecast, plot.defaultCondition);
                     if (forecast_pred_x !== undefined) {
                         forecastLines.push({
                             type: 'scatter',
-                            x: floatYearToDate([forecast_pred_x, forecast_pred_x]),
-                            y: [0, maxV],
-                            line: { color: ORANGE_RGB, }
+                            name: "Elicited Forecast",
+                            x: floatYearToDate(linspace(forecast_pred_x, forecast_pred_x, 10)),
+                            y: linspace(0, maxV, 10),
+                            line: { color: ORANGE_RGB, },
+                            mode: "lines"
                         });
                     }
                 }
@@ -158,23 +171,23 @@ function InnerHistogram(props: HistogramPlotProps) {
                                         ? [
                                             floatYearToDate(unelicitedForecast.x_linspace),
                                             floatYearToDate(plot.elicited.x_linspace),
-                                            floatYearToDate([forecast_pred_x_unelicited, forecast_pred_x_unelicited]),
-                                            floatYearToDate([forecast_pred_x_elicited, forecast_pred_x_elicited])
+                                            floatYearToDate(linspace(forecast_pred_x_unelicited, forecast_pred_x_unelicited, 10)),
+                                            floatYearToDate(linspace(forecast_pred_x_elicited, forecast_pred_x_elicited, 10))
                                         ]
                                         : [
                                             floatYearToDate(unelicitedForecast.x_linspace),
-                                            floatYearToDate([forecast_pred_x_unelicited, forecast_pred_x_unelicited])
+                                            floatYearToDate(linspace(forecast_pred_x_unelicited, forecast_pred_x_unelicited, 10))
                                         ],
                                     'y': plot.elicited
                                         ? [
                                             unelicitedForecast.density.map(r => r[j]),
                                             plot.elicited.density.map(r => r[j]),
-                                            [0, maxV],
-                                            [0, maxV]
+                                            linspace(0, maxV, 10),
+                                            linspace(0, maxV, 10)
                                         ]
                                         : [
                                             unelicitedForecast.density.map(r => r[j]),
-                                            [0, maxV],
+                                            linspace(0, maxV, 10),
                                         ],
                                 },
                                 {

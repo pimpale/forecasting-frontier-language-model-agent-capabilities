@@ -73,6 +73,14 @@ function App() {
       <InteractiveFigure1 />
     </Section>
     <Section id="interactive-fig1" name="Conditional Probability Distributions">
+      <AsideCard title={"Explanation"} >
+        <p>
+          Each of these graphs are a horizontal slice through Figure 1.
+          The vertical lines mark the mainline forecast,
+          and the translucent curves show the probability of the corresponding benchmark reaching a threshold score (0.9 for Cybench and SWE-Bench Verified, 1.0 for RE-Bench) at each date.
+          You can adjust the benchmark threshold by using the slider at the bottom of each graph.
+        </p>
+      </AsideCard>
       <InteractiveHistogram />
     </Section>
     <Section id="limitations" name="Limitations">
@@ -84,7 +92,6 @@ function App() {
         effectively through reasoning. This might invalidate our predictions and thus provide a reason to assume faster
         progress than our forecasts would suggest, even for high-elicitation predictions.
       </p>
-
       <p>
         <b>Underelicitation</b>:
         As discussed in the elicitation section, we did not put a lot of effort into elicitation. As a consequence,
@@ -145,6 +152,7 @@ import 'bootstrap/dist/js/bootstrap';
 import { ArrowRight } from 'react-bootstrap-icons';
 import dedent from 'dedent';
 import InteractiveHistogram from './interactive_figures/InteractiveHistogram';
+import AsideCard from './components/AsideCard';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
