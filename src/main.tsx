@@ -1,12 +1,23 @@
 import ArticleLayout from './components/ArticleLayout';
 import Section from './components/Section';
-import { FileEarmarkPdf, Github } from 'react-bootstrap-icons';
+import { FileEarmarkPdf, Github, Clipboard } from 'react-bootstrap-icons';
 
 import Fig1 from './assets/figures/scaling_graph.png';
 
 import { Prism as SyntaxHighligher } from 'react-syntax-highlighter';
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import InteractiveFigure1 from './interactive_figures/InteractiveFigure1';
+import { ArrowRight } from 'react-bootstrap-icons';
+import InteractiveHistogram from './interactive_figures/InteractiveHistogram';
+import AsideCard from './components/AsideCard';
+
+
+const BIBTEX_CITATION = `@article{pimpale2026forecasting,
+  title={Forecasting Frontier Language Model Agent Capabilities},
+  author={Pimpale, Govind and Højmark, Axel and Scheurer, Jérémy and Hobbhahn, Marius},
+  journal={arXiv preprint arXiv:},
+  year={2026}
+}`;
 
 function App() {
   return <ArticleLayout >{({ Citation, CitationBank }) => <>
@@ -120,19 +131,13 @@ function App() {
 
     <Section id="bibtex" name="Bibtex">
       <SyntaxHighligher
-        className="mx-5 my-5"
+        className="mx-5 my-2"
         language={"bibtex"}
         showLineNumbers
         style={a11yDark}
-        children={dedent`
-          @article{pimpale2026forecasting,
-            title={Forecasting Frontier Language Model Agent Capabilities},
-            author={Pimpale, Govind and Højmark, Axel and Scheurer, Jérémy and Hobbhahn, Marius},
-            journal={arXiv preprint arXiv:},
-            year={2026}
-          }
-        `}
+        children={BIBTEX_CITATION}
       />
+      <ClipboardButton text={BIBTEX_CITATION} />
     </Section>
     <Section id="references" name="References">
       <CitationBank />
@@ -142,17 +147,37 @@ function App() {
 }
 
 
+function ClipboardButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
+  };
 
-import { StrictMode } from 'react'
+  return (
+    <div className="d-flex align-items-center mx-5">
+      <button 
+        className={`btn ${copied ? 'btn-success' : 'btn-outline-secondary'}`} 
+        onClick={handleCopy}
+      >
+        <Clipboard className="me-2" />
+        Copy to Clipboard
+      </button>
+      {copied && <span className="ms-2 text-success">Copied!</span>}
+    </div>
+  );
+}
+
+import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import './styles/style.scss';
 import 'bootstrap/dist/js/bootstrap';
-import { ArrowRight } from 'react-bootstrap-icons';
-import dedent from 'dedent';
-import InteractiveHistogram from './interactive_figures/InteractiveHistogram';
-import AsideCard from './components/AsideCard';
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

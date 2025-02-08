@@ -199,7 +199,7 @@ function InnerHistogram(props: HistogramPlotProps) {
                     len: 0.5,
                     x: 0.25,
                     y: 0,
-                    pad: { t: 30 },
+                    pad: { t: 30, b: 10 },
                     ticklen: 4,
                     minorticklen: 0,
                 };
