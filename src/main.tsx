@@ -20,7 +20,7 @@ const BIBTEX_CITATION = `@article{pimpale2026forecasting,
 }`;
 
 function App() {
-  return <ArticleLayout >{({ Citation, CitationBank }) => <>
+  return <ArticleLayout >{_ => <>
     <h2 className='text-center'>Forecasting Frontier Language Model Agent Capabilities</h2>
     <section id="authors" className="d-flex justify-content-center">
       <div className='p-2 text-center'>
@@ -86,7 +86,7 @@ function App() {
     <Section id="interactive-fig1" name="Conditional Probability Distributions">
       <AsideCard title={"Explanation"} >
         <p>
-          Each of these graphs are a horizontal slice through Figure 1.
+          Each of these graphs are a horizontal slice through the figure above (Figure 1 in the paper).
           The vertical lines mark the mainline forecast,
           and the translucent curves show the probability of the corresponding benchmark reaching a threshold score (0.9 for Cybench and SWE-Bench Verified, 1.0 for RE-Bench) at each date.
           You can adjust the benchmark threshold by using the slider at the bottom of each graph.
@@ -124,8 +124,8 @@ function App() {
       <p>
         <b>Limited Scope of Evaluations</b>:
         The benchmarks we consider focus primarily on software engineering, cyber capabilities, and machine learning
-        engineering. Noteworthy other agent benchmarks include GAIA<Citation source='https://arxiv.org/abs/2311.12983' /> and OS-World<Citation source='https://arxiv.org/abs/2404.07972' /> for browsing and tool use, as well as
-        MLE-Bench<Citation source='https://openai.com/index/mle-bench/' /> for additional machine learning capabilities.
+        engineering. Noteworthy other agent benchmarks include GAIA{/*<Citation source='https://arxiv.org/abs/2311.12983' />*/} and OS-World{/*<Citation source='https://arxiv.org/abs/2404.07972' />*/} for browsing and tool use, as well as
+        MLE-Bench{/*<Citation source='https://openai.com/index/mle-bench/' />*/} for additional machine learning capabilities.
       </p>
     </Section>
 
@@ -138,9 +138,6 @@ function App() {
         children={BIBTEX_CITATION}
       />
       <ClipboardButton text={BIBTEX_CITATION} />
-    </Section>
-    <Section id="references" name="References">
-      <CitationBank />
     </Section>
   </>
   }</ArticleLayout>
