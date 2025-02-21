@@ -1,0 +1,57 @@
+Model,SWE-Bench Verified,Release Date
+W&B Programmer OI crosscheck5,0.6460,2025-01-17
+Blackbox AI Agent,0.6280,2025-01-10
+CodeStory Midwit Agent + swe-search,0.6220,2024-12-21
+Learn-by-interact,0.6020,2024-12-19
+devlo,0.5820,2024-12-13
+Emergent EI (v2024-12-23),0.5720,2024-12-23
+Gru(2024-12-08),0.5700,2024-12-08
+EPAM AI/Run Developer Agent v20241212 + Anthropic Claude 3.5 Sonnet,0.5540,2024-12-12
+Amazon Q Developer Agent (v20241202-dev),0.5500,2024-12-02
+devlo,0.5420,2024-11-08
+Bracket.sh,0.5320,2025-01-10
+OpenHands + CodeAct v2.1 (claude-3-5-sonnet-20241022),0.5300,2024-10-22
+Google Jules + Gemini 2.0 Flash (v20241212-experimental),0.5220,2024-12-12
+Engine Labs (2024-11-25),0.5180,2024-11-25
+Agentless-1.5 + Claude-3.5 Sonnet (20241022),0.5080,2024-10-22
+Solver (2024-10-28),0.5000,2024-10-28
+Bytedance MarsCode Agent,0.5000,2024-11-25
+nFactorial (2024-11-05),0.4920,2024-11-05
+Tools + Claude 3.5 Sonnet (2024-10-22),0.4900,2024-10-22
+Composio SWE-Kit (2024-10-25),0.4860,2024-10-25
+AppMap Naive v2,0.4720,2024-11-06
+Emergent EI (v2024-10-12),0.4660,2024-10-23
+AutoCodeRover-v2.0 (Claude-3.5-Sonnet-20241022),0.4620,2024-10-22
+Solver (2024-09-12),0.4540,2024-09-12
+Gru(2024-08-24),0.4520,2024-08-24
+CodeShellAgent + Gemini 2.0 Flash (Experimental),0.4440,2024-10-18
+Solver (2024-09-12),0.4360,2024-09-12
+uagiforge,0.4160,2024-10-30
+nFactorial (2024-10-30),0.4160,2024-10-30
+Nebius AI Qwen 2.5 72B Generator + Llama 3.170B Critic,0.4060,2024-11-13
+Tools + Claude-3.5 Haiku,0.4060,2024-10-22
+Honeycomb,0.4060,2024-08-20
+Composio SWEKit + Claude 3.5 Sonnet (2024-10-16),0.4060,2024-10-16
+EPAM AI/Run Developer Agent v20241029 + Anthropic Claude 3.5 Sonnet,0.3960,2024-10-29
+Amazon Q Developer Agent (v20240719-dev),0.3880,2024-07-21
+Agentless-1.5 + GPT 4o (2024-05-13),0.3880,2024-05-13
+AutoCodeRover (v20240620) + GPT 4o (20240513),0.3840,2024-06-28
+SWE-agent + Claude 3.5 Sonnet,0.3360,2024-06-20
+MASA1 + GPT 4o (2024-06-12),0.3260,2024-06-12
+Artemis Agent v1 (2024-11-20),0.3200,2024-11-20
+nFactorial (2024-10-07),0.3160,2024-10-07
+SWE-Fixer (Qwen2.5-7b retriever + Qwen2.5-72b editor) 20241128,0.3020,2024-11-28
+Lingma Agent + Lingma SWE-GPT 72b (v0925),0.2880,2024-09-25
+EPAM AI/Run Developer Agent + GPT4o,0.2700,2024-10-16
+AppMap Naive + GPT 4o (20240820),0.2620,2024-08-20
+nFactorial (2024-10-10),0.2580,2024-10-10
+Amazon Q Developer Agent (v20240430-dev),0.2560,2024-05-09
+Lingma Agent + Lingma SWE-GPT 72b (v0918),0.2500,2024-09-18
+EPAM AI/Run Developer Agent + GPT4o,0.2400,2024-08-20
+SWE-agent + GPT 4o (1106),0.2320,2024-04-02
+SWE-agent + Claude 3 Opus,0.1820,2024-04-02
+Lingma Agent + Lingma SWE-GPT 72b (v0918),0.1820,2024-09-18
+RAG + Claude 3 Opus,0.1020,2024-04-02
+RAG + GPT 4o (1106),0.0700,2024-04-02
+RAG + SWE-Llama 7B,0.0440,2024-04-02
+RAG + SWE-Llama 13B,0.0280,2024-04-02
