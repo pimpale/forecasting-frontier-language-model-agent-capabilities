@@ -12,11 +12,11 @@ import InteractiveHistogram from './interactive_figures/InteractiveHistogram';
 import AsideCard from './components/AsideCard';
 
 
-const BIBTEX_CITATION = `@article{pimpale2026forecasting,
+const BIBTEX_CITATION = `@article{pimpale2025forecasting,
   title={Forecasting Frontier Language Model Agent Capabilities},
   author={Pimpale, Govind and Højmark, Axel and Scheurer, Jérémy and Hobbhahn, Marius},
-  journal={arXiv preprint arXiv:},
-  year={2026}
+  journal={arXiv preprint arXiv: <TODO>},
+  year={2025}
 }`;
 
 function App() {
@@ -59,7 +59,7 @@ function App() {
         </a>
       </div>
       <div className='p-3'>
-        <a className='btn btn-outline-secondary p-2 fs-5 d-flex align-items-center' href="https://github.com/hojmax/agent-scaling-laws">
+        <a className='btn btn-outline-secondary p-2 fs-5 d-flex align-items-center' href="https://github.com/pimpale/forecasting-frontier-language-model-agent-capabilities">
           <Github className='me-1' /> Code
         </a>
       </div>
