@@ -68,7 +68,7 @@ function App() {
       <img src={Fig1} className='w-75' />
     </section>
     <section id="tldr" className="mt-5 px-5">
-      <b>TLDR:</b> We evaluate different methods for forecasting frontier language model capabilities, finding that by early 2026, advanced AI agents could achieve 87% on SWE-Bench Verified, M% on CyBench, and N on RE-Bench.
+      <b>TLDR:</b> We evaluate different methods for forecasting frontier language model capabilities, finding that by early 2026, advanced AI agents could achieve 87% on SWE-Bench Verified, 66% on CyBench, and a score of 0.73 on RE-Bench.
     </section>
     <Section id="abstract" name="Abstract">
       As language models (LMs) increasingly operate as autonomous agents, accurately forecasting their capabilities becomes crucial for societal preparedness.
