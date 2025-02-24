@@ -1,0 +1,12 @@
+[
+    {
+        "model": "o3",
+        "SWE-Bench Verified": 0.717,
+        "release_date": 2024.9699
+    },
+    {
+        "model": "claude-3-7-sonnet-20250219",
+        "SWE-Bench Verified": 0.703,
+        "release_date": 2025.1507
+    }
+]

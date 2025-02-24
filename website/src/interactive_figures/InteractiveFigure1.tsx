@@ -2,13 +2,14 @@ import Plot from 'react-plotly.js'
 import agentic_benchmark from '../assets/data/agentic_benchmark.json';
 import cybench_scaffolds from '../assets/data/cybench_scaffolds.json';
 import swebench_scaffolds from '../assets/data/swebench_scaffolds.json';
+import swebench_observed_future_data from '../assets/data/swebench_observed_future_data.json';
 import swebench_forecast from '../assets/data/swebench_forecast.json';
 import swebench_forecast_elicited from '../assets/data/swebench_forecast_elicited.json';
 import cybench_forecast from '../assets/data/cybench_forecast.json';
 import cybench_forecast_elicited from '../assets/data/cybench_forecast_elicited.json';
 import rebench_forecast from '../assets/data/rebench_forecast.json';
 import { useState, useEffect } from 'react';
-import { BLUE_RGB, floatYearToDate, Forecast, ORANGE_RGB, get_frontier_model_set } from './utils';
+import { BLUE_RGB, RED_RGB, floatYearToDate, Forecast, ORANGE_RGB, get_frontier_model_set } from './utils';
 
 
 function InteractiveFigure1(_: {}) {
@@ -32,6 +33,13 @@ function InteractiveFigure1(_: {}) {
                 },
                 forecast: swebench_forecast_elicited,
             },
+            observed_future_data: {
+                scatter: {
+                    xpoints: swebench_observed_future_data.map(r => r["release_date"]),
+                    ypoints: swebench_observed_future_data.map(r => r["SWE-Bench Verified"]),
+                    text: swebench_observed_future_data.map(r => r["model"]),
+                }
+            }
         },
         {
             title: "Cybench",
@@ -85,6 +93,9 @@ type PlotProps = {
     elicited?: {
         scatter: Scatter,
         forecast: Forecast
+    }
+    observed_future_data?: {
+        scatter: Scatter,
     }
 }
 
@@ -255,6 +266,25 @@ function Fig1(props: InnerPlotProps) {
                             hovertemplate: '%{text}<br>%{y:.3f}<extra></extra>'
                         }
                     );
+                }
+
+                // Add observed future data points in red if they exist
+                if (plot.observed_future_data) {
+                    scatter_data.push({
+                        mode: 'markers',
+                        type: 'scatter',
+                        x: floatYearToDate(plot.observed_future_data.scatter.xpoints),
+                        y: plot.observed_future_data.scatter.ypoints,
+                        text: plot.observed_future_data.scatter.text,
+                        xaxis: `x${i + 1}`,
+                        yaxis: `y${i + 1}`,
+                        marker: {
+                            color: RED_RGB,
+                            symbol: 'diamond',
+                            size: 8
+                        },
+                        hovertemplate: '%{text}<br>%{y:.3f}<extra></extra>'
+                    });
                 }
 
                 return [...confidence_interval_data, ...line_data, ...scatter_data];

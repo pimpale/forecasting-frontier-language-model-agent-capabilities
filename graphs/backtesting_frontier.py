@@ -192,6 +192,7 @@ agentic_benchmark = duckdb.sql(
     FROM agentic_benchmark
     UNION ALL VALUES
         ('o3', null, null, 0.715, null, null, null, null, 2025.00),
+        ('claude-3-7-sonnet-20250219', null, null, 0.70, null, null, null, null, 2025.1507),
     """
     # UNION ALL VALUES
     # ('a', 0, 0, 0, 0, 2025.00),

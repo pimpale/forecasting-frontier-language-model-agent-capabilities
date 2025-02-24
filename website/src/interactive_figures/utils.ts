@@ -1,5 +1,6 @@
 export const BLUE_RGB = "#1f77b4";
 export const ORANGE_RGB = "#ff7f0e";
+export const RED_RGB = "#e15759";
 
 
 export type Forecast = {
