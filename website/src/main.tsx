@@ -54,8 +54,8 @@ function App() {
     </section>
     <section id="links" className="d-flex justify-content-center">
       <div className='p-3'>
-        <a className='btn btn-outline-secondary p-2 fs-5 d-flex align-items-center' href="https://arxiv.org/abs/">
-          <FileEarmarkPdf className='me-1' /> ArXiv
+        <a className='btn btn-outline-secondary p-2 fs-5 d-flex align-items-center' href="https://static1.squarespace.com/static/6593e7097565990e65c886fd/t/67bc98d09087250062ed1891/1740413139348/agent_observational_scaling_laws_mats24+%282%29.pdf">
+          <FileEarmarkPdf className='me-1' /> PDF
         </a>
       </div>
       <div className='p-3'>
