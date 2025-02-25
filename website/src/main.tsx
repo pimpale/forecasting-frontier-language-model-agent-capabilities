@@ -12,11 +12,14 @@ import InteractiveHistogram from './interactive_figures/InteractiveHistogram';
 import AsideCard from './components/AsideCard';
 
 
-const BIBTEX_CITATION = `@article{pimpale2025forecasting,
-  title={Forecasting Frontier Language Model Agent Capabilities},
-  author={Pimpale, Govind and Højmark, Axel and Scheurer, Jérémy and Hobbhahn, Marius},
-  journal={arXiv preprint arXiv: <TODO>},
-  year={2025}
+const BIBTEX_CITATION = `@misc{pimpale2025forecastingfrontierlanguagemodel,
+      title={Forecasting Frontier Language Model Agent Capabilities}, 
+      author={Govind Pimpale and Axel Højmark and Jérémy Scheurer and Marius Hobbhahn},
+      year={2025},
+      eprint={2502.15850},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2502.15850}, 
 }`;
 
 function App() {
@@ -54,8 +57,8 @@ function App() {
     </section>
     <section id="links" className="d-flex justify-content-center">
       <div className='p-3'>
-        <a className='btn btn-outline-secondary p-2 fs-5 d-flex align-items-center' href="https://static1.squarespace.com/static/6593e7097565990e65c886fd/t/67bc98d09087250062ed1891/1740413139348/agent_observational_scaling_laws_mats24+%282%29.pdf">
-          <FileEarmarkPdf className='me-1' /> PDF
+        <a className='btn btn-outline-secondary p-2 fs-5 d-flex align-items-center' href="http://arxiv.org/abs/2502.15850">
+          <FileEarmarkPdf className='me-1' /> Arxiv
         </a>
       </div>
       <div className='p-3'>
