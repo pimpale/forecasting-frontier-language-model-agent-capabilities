@@ -192,7 +192,8 @@ agentic_benchmark = duckdb.sql(
     FROM agentic_benchmark
     UNION ALL VALUES
         ('o3', null, null, 0.715, null, null, null, null, 2025.00),
-        ('claude-3-7-sonnet-20250219', null, null, 0.70, null, null, null, null, 2025.1507),
+        ('claude-3.7-sonnet', null, null, 0.70, null, null, null, null, 2025.1507),
+        ('gpt-4.5-preview',  null, null, 0.38, null, null, null, null, 2025.159)
     """
     # UNION ALL VALUES
     # ('a', 0, 0, 0, 0, 2025.00),
@@ -1884,6 +1885,8 @@ model_friendly_names = {
     "anthropic/claude-3-opus-20240229": "claude-3-opus",
     "together/Qwen--Qwen2.5-72B-Instruct-Turbo": "qwen2.5-72b",
     "o3": "o3",
+    "claude-3.7-sonnet": "claude-3.7-sonnet",
+    "gpt-4.5-preview": "gpt-4.5-preview",
 }
 
 
@@ -1897,6 +1900,8 @@ model_markers = {
     "anthropic/claude-3-5-sonnet-20240620": "X",
     "anthropic/claude-3-opus-20240229": "s",
     "o3": "D",
+    "claude-3.7-sonnet": "P",
+    "gpt-4.5-preview": "v",
     "together/Qwen--Qwen2.5-72B-Instruct-Turbo": "2",
 }
 
@@ -2233,7 +2238,8 @@ def plot_figure_1(
                 #     alpha=0.4,
                 # )
 
-                if model in ["o3"]:
+                print(model)
+                if model in ["o3", "claude-3.7-sonnet", "gpt-4.5-preview"]:
                     curr_ax.scatter(
                         [release_date],
                         [score],
