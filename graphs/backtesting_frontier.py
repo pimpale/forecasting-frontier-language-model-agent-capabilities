@@ -3241,13 +3241,13 @@ for elicitation in [0, 1]:
 
 # dump some json files
 agentic_benchmark.to_json(
-    "./jsons/agentic_benchmark.json", orient="records", index=False
+    "../website/src/assets/data/agentic_benchmark.json", orient="records", index=False
 )
 cybench_scaffolds.to_json(
-    "./jsons/cybench_scaffolds.json", orient="records", index=False
+    "../website/src/assets/data/cybench_scaffolds.json", orient="records", index=False
 )
 swebench_scaffolds.to_json(
-    "./jsons/swebench_scaffolds.json", orient="records", index=False
+    "../website/src/assets/data/swebench_scaffolds.json", orient="records", index=False
 )
 
 # %%
