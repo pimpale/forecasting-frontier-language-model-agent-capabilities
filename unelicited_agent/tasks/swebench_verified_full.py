@@ -35,7 +35,6 @@ ALWAYS EXPLAIN YOUR REASONING BEFORE RUNNING A COMMAND. This will help you avoid
         dataset="princeton-nlp/SWE-bench_Verified",
         solver=solver,
         scorer=swe_bench_scorer(),
-        max_messages=50,
     )
     
     
