@@ -193,7 +193,11 @@ agentic_benchmark = duckdb.sql(
     UNION ALL VALUES
         ('o3', null, null, 0.715, null, null, null, null, 2025.00),
         ('claude-3.7-sonnet', null, null, 0.70, null, null, null, null, 2025.1507),
-        ('gpt-4.5-preview',  null, null, 0.38, null, null, null, null, 2025.159)
+        ('gpt-4.5-preview',  null, null, 0.38, null, null, null, null, 2025.159),
+        ('gpt-5', null, null, 0.749, null, null, null, null, 2025.5973),
+        ('gpt-5.1-codex-max', null, null, 0.779, null, null, null, null, 2025.882),
+        ('claude-4.5-opus', null, null, 0.809, null, null, null, null, 2025.896),
+        ('gemini-3.0-pro', null, null, 0.762, null, null, null, null, 2025.879)
     """
     # UNION ALL VALUES
     # ('a', 0, 0, 0, 0, 2025.00),
@@ -1223,7 +1227,7 @@ def compute_density_samples_via_bootstrapping(
     frontier_train_tensor = torch.tensor(
         frontier_train_df[
             ModelCls.necessary_benchmarks() + [ModelCls.capability()]
-        ].values,
+        ].to_numpy(dtype=np.float32),
         dtype=torch.float32,
     )
 
@@ -1237,7 +1241,7 @@ def compute_density_samples_via_bootstrapping(
                 "Elo",
                 target_benchmark,
             ]
-        ].values,
+        ].to_numpy(dtype=np.float32),
         dtype=torch.float32,
     )
 
@@ -1887,6 +1891,10 @@ model_friendly_names = {
     "o3": "o3",
     "claude-3.7-sonnet": "claude-3.7-sonnet",
     "gpt-4.5-preview": "gpt-4.5-preview",
+    "gpt-5": "gpt-5",
+    "gpt-5.1-codex-max": "gpt-5.1-codex-max",
+    "claude-4.5-opus": "claude-4.5-opus",
+    "gemini-3.0-pro": "gemini-3.0-pro",
 }
 
 
@@ -1903,6 +1911,10 @@ model_markers = {
     "claude-3.7-sonnet": "P",
     "gpt-4.5-preview": "v",
     "together/Qwen--Qwen2.5-72B-Instruct-Turbo": "2",
+    "gpt-5": "D",
+    "gpt-5.1-codex-max": "h",
+    "claude-4.5-opus": "d",
+    "gemini-3.0-pro": "v",
 }
 
 
@@ -2238,8 +2250,7 @@ def plot_figure_1(
                 #     alpha=0.4,
                 # )
 
-                print(model)
-                if model in ["o3", "claude-3.7-sonnet", "gpt-4.5-preview"]:
+                if model in ["o3", "claude-3.7-sonnet", "gpt-5", "gpt-5.1-codex-max", "claude-4.5-opus", "gemini-3.0-pro"]:
                     curr_ax.scatter(
                         [release_date],
                         [score],
