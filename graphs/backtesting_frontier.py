@@ -1908,13 +1908,13 @@ model_markers = {
     "anthropic/claude-3-5-sonnet-20240620": "X",
     "anthropic/claude-3-opus-20240229": "s",
     "o3": "D",
-    "claude-3.7-sonnet": "P",
+    "claude-3.7-sonnet": "h",
     "gpt-4.5-preview": "v",
     "together/Qwen--Qwen2.5-72B-Instruct-Turbo": "2",
-    "gpt-5": "D",
-    "gpt-5.1-codex-max": "h",
+    "gpt-5": "v",
+    "gpt-5.1-codex-max": "_",
     "claude-4.5-opus": "d",
-    "gemini-3.0-pro": "v",
+    "gemini-3.0-pro": "x",
 }
 
 
@@ -2249,14 +2249,16 @@ def plot_figure_1(
                 #     color="black",
                 #     alpha=0.4,
                 # )
+                print(model)
 
                 if model in ["o3", "claude-3.7-sonnet", "gpt-5", "gpt-5.1-codex-max", "claude-4.5-opus", "gemini-3.0-pro"]:
+                    print(model)
                     curr_ax.scatter(
                         [release_date],
                         [score],
                         label=(f"{model_friendly_names[model]}"),
                         color="tab:red",
-                        s=40,
+                        s=30,
                         marker=model_markers[model],
                     )
 
