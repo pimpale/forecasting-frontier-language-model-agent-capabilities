@@ -43,7 +43,7 @@ ALWAYS EXPLAIN YOUR REASONING BEFORE RUNNING A COMMAND. This will help you avoid
     for log_file in list_eval_logs(resume_dir):
         print(f"Reading log file: {log_file}")
         log = read_eval_log(log_file)
-        for sample in log.samples or []:
+        for sample in log.samples or []:c
             if sample.scores is not None:
                 already_processed_ids.add(sample.id)
 
